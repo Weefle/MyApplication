@@ -1,9 +1,13 @@
 package fr.weefle.myapplication;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 
+import android.Manifest;
 import android.content.ContentResolver;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -47,32 +51,42 @@ public class ReceiverFragment extends Fragment {
     private List<String> retrieveMessages(ContentResolver contentResolver)
     {
         final List<String> messages = new ArrayList<>();
-        final Cursor cursor = contentResolver.query(ReceiverFragment.SMS_URI_INBOX, null, null, null, null);
-
-        if (cursor == null)
-        {
-            Log.e("retrieveMessages", "Cannot retrieve the messages");
-            return null;
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            // Ask for permision
+            ActivityCompat.requestPermissions(getActivity(),new String[] { Manifest.permission.READ_SMS}, 1);
         }
+        else {
+// Permission has already been granted
+            final Cursor cursor = contentResolver.query(ReceiverFragment.SMS_URI_INBOX, null, null, null, null);
 
-        if (cursor.moveToFirst() == true)
-        {
-            do
+            if (cursor == null)
             {
-                final String address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
-                final String body = cursor.getString(cursor.getColumnIndexOrThrow("body"));
-
-                messages.add(address + " - " + body);
-
-                Log.d("retrieveContacts", "The message with from + '" + address + "' with the body '" + body + "' has been retrieved");
+                Log.e("retrieveMessages", "Cannot retrieve the messages");
+                return null;
             }
-            while (cursor.moveToNext() == true);
+
+            if (cursor.moveToFirst() == true)
+            {
+                do
+                {
+                    final String address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+                    final String body = cursor.getString(cursor.getColumnIndexOrThrow("body"));
+
+                    messages.add(address + " - " + body);
+
+                    Log.d("retrieveContacts", "The message with from + '" + address + "' with the body '" + body + "' has been retrieved");
+                }
+                while (cursor.moveToNext() == true);
+            }
+
+            if (cursor.isClosed() == false)
+            {
+                cursor.close();
+            }
         }
 
-        if (cursor.isClosed() == false)
-        {
-            cursor.close();
-        }
 
         return messages;
     }

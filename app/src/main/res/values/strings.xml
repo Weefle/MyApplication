@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">SecureMessage</string>
+    <string name="title_home">Message Box</string>
+    <string name="title_dashboard">Send Message</string>
+    <string name="title_notifications">Connect Bluetooth</string>
     <string name="title_activity_maps">Map</string>
+    <string name="button">Envoyer</string>
+    <string name="button1">Rechercher</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="enter_message">Enter message</string>
+    <string name="logo">logo</string>
 </resources>
