@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="LabelFor" tools:targetApi="o"/>
+        tools:ignore="LabelFor" />
 
     <EditText
         android:id="@+id/editText2"
@@ -44,6 +44,6 @@
         android:text="@string/enter_message"
         app:layout_constraintStart_toStartOf="@+id/editText"
         app:layout_constraintTop_toBottomOf="@+id/editText"
-        tools:ignore="LabelFor" tools:targetApi="o"/>
+        tools:ignore="LabelFor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
