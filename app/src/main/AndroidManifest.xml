@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="fr.weefle.myapplication">
 
-    <uses-feature android:name="android.telephony.SmsManager"/>
-
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />

@@ -51,14 +51,8 @@ public class ReceiverFragment extends Fragment {
     private List<String> retrieveMessages(ContentResolver contentResolver)
     {
         final List<String> messages = new ArrayList<>();
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_SMS)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            // Ask for permision
-            ActivityCompat.requestPermissions(getActivity(),new String[] { Manifest.permission.READ_SMS}, 1);
-        }
-        else {
-// Permission has already been granted
+
+
             final Cursor cursor = contentResolver.query(ReceiverFragment.SMS_URI_INBOX, null, null, null, null);
 
             if (cursor == null)
@@ -85,7 +79,7 @@ public class ReceiverFragment extends Fragment {
             {
                 cursor.close();
             }
-        }
+
 
 
         return messages;

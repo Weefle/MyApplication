@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -25,7 +27,6 @@ public class HomeActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    //startActivity(new Intent(getApplicationContext(), ReceiverFragment.class));
                     fragment = new ReceiverFragment();
                     break;
                 case R.id.navigation_dashboard:
@@ -44,10 +45,13 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        MessageReceiver receiver = new MessageReceiver();
-        registerReceiver(receiver, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReceiverFragment()).commit();
+
+
+            BottomNavigationView navView = findViewById(R.id.nav_view);
+            navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReceiverFragment()).commit();
+
+
     }
+
 }

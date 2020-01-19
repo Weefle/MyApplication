@@ -42,21 +42,14 @@ public class SenderFragment extends Fragment {
         button.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.SEND_SMS)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    // Permission is not granted
-                    // Ask for permision
-                    ActivityCompat.requestPermissions(getActivity(),new String[] { Manifest.permission.SEND_SMS}, 1);
-                }
-                else {
-// Permission has already been granted
+
                     Toast.makeText(getContext(),"Message envoyé!",Toast.LENGTH_SHORT).show();
                     SmsManager.getDefault().sendTextMessage(phone.getText().toString(),null,message.getText().toString(),null,null);
                 }
 
 
 
-            }
+
         });
     }
 
