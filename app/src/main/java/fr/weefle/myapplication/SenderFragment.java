@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Random;
+
 
 public class SenderFragment extends Fragment {
 
@@ -43,8 +45,9 @@ public class SenderFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                int random = new Random().nextInt(10000)*3;
                     Toast.makeText(getContext(),"Message envoyé!",Toast.LENGTH_SHORT).show();
-                    SmsManager.getDefault().sendTextMessage(phone.getText().toString(),null,message.getText().toString(),null,null);
+                    SmsManager.getDefault().sendTextMessage(phone.getText().toString(),null,message.getText().toString() + " : " + random,null,null);
                 }
 
 
