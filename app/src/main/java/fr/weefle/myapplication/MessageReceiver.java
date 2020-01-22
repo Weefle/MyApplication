@@ -10,6 +10,8 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MessageReceiver extends BroadcastReceiver {
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -44,10 +46,43 @@ public class MessageReceiver extends BroadcastReceiver {
                     // Build the message to show.
                     strMessage += "SMS from " + msgs[i].getOriginatingAddress();
                     strMessage += " :" + msgs[i].getMessageBody() + "\n";
+                    strMessage += " =>";
+                    for(int j : getIntegers(msgs[i].getMessageBody()) ) {
+                        strMessage += j;
+                    }
                     // Display the SMS message.
                     Toast.makeText(context, strMessage, Toast.LENGTH_LONG).show();
                 }
             }
         }
     }
+
+    public static int[] getIntegers(String str) {
+
+        ArrayList<Integer> list = new ArrayList<Integer>();
+
+        //découper la phrase en mots
+        String[] splited = str.split(" ");
+
+        //parcourir les mots
+        for (String current : splited) {
+            try {
+                //tenter de convertir le mot en int
+                int parsedInt = Integer.parseInt (current);
+                //ajouter l Integer à la list
+                list.add(parsedInt);                    //un "auto boxing", une instance de Integer est créée à partir d'un int
+            } catch (NumberFormatException e) {
+                //c est pas un int
+            }
+        }
+
+        //construire le résultat
+        int[] result = new int[list.size()];
+        for (int i = 0 ; i < list.size() ; i++) {
+            //parcourir la list de Integer créée
+            result[i] = list.get(i);
+        }
+        return result;
+    }
+
 }
