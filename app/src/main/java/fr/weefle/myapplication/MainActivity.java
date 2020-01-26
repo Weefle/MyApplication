@@ -24,7 +24,12 @@ public class MainActivity extends AppCompatActivity {
     String[] permissions= new String[]{
             Manifest.permission.RECEIVE_SMS,
             Manifest.permission.READ_SMS,
-            Manifest.permission.SEND_SMS};
+            Manifest.permission.SEND_SMS,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.BLUETOOTH,
+            Manifest.permission.BLUETOOTH_ADMIN/*,
+            Manifest.permission.BLUETOOTH_PRIVILEGED*/};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

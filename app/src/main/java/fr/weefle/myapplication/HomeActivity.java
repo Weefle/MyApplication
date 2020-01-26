@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -33,7 +34,11 @@ public class HomeActivity extends AppCompatActivity {
                     fragment = new SenderFragment();
                     break;
                 case R.id.navigation_notifications:
-                    fragment = new BluetoothFragment();
+                    // si le bluetooth n'est pas activé
+                    Intent intent = new Intent(HomeActivity.this, BluetoothActivity.class);
+                    startActivity(intent);
+                    // sinon on lance le fragment
+                    // fragment = new BluetoothFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
@@ -45,8 +50,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-
             BottomNavigationView navView = findViewById(R.id.nav_view);
             navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReceiverFragment()).commit();
