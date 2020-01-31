@@ -35,10 +35,10 @@ public class HomeActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_notifications:
                     // si le bluetooth n'est pas activé
-                    Intent intent = new Intent(HomeActivity.this, BluetoothActivity.class);
-                    startActivity(intent);
+                   // Intent intent = new Intent(HomeActivity.this, BluetoothActivity.class);
+                    //startActivity(intent);
                     // sinon on lance le fragment
-                    // fragment = new BluetoothFragment();
+                     fragment = new BluetoothFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();

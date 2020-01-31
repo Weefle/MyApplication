@@ -1,6 +1,5 @@
 package fr.weefle.myapplication;
 
-import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.os.Build;
@@ -48,7 +47,7 @@ public class DeviceListAdapter extends BaseAdapter {
         TextView name = convertView.findViewById(R.id.bluetooth_name);
         name.setText(devicename);
         String deviceadress = device.getAddress();
-        TextView address = convertView.findViewById(R.id.bluetooth_adress);
+        TextView address = convertView.findViewById(R.id.bluetooth_address);
         address.setText(deviceadress);
 
         convertView.setOnClickListener(v -> {
