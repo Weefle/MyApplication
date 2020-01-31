@@ -9,4 +9,9 @@
     <string name="enter_phone_number">Enter phone number</string>
     <string name="enter_message">Enter message</string>
     <string name="logo">logo</string>
+    <string name="bluetooth_name">bluetooth_name</string>
+    <string name="bluetooth_adress">bluetooth_adress</string>
+    <string name="btanalys">Analyser</string>
+    <string name="switch2">Découverte</string>
+    <string name="switch1">Bluetooth</string>
 </resources>
