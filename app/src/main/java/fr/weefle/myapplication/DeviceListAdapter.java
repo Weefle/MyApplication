@@ -46,9 +46,9 @@ public class DeviceListAdapter extends BaseAdapter {
         String devicename = device.getName();
         TextView name = convertView.findViewById(R.id.bluetooth_name);
         name.setText(devicename);
-        String deviceadress = device.getAddress();
+        String deviceaddress = device.getAddress();
         TextView address = convertView.findViewById(R.id.bluetooth_address);
-        address.setText(deviceadress);
+        address.setText(deviceaddress);
 
         convertView.setOnClickListener(v -> {
             BluetoothActivity.mBluetoothAdapter.cancelDiscovery();

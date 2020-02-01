@@ -3,12 +3,14 @@ package fr.weefle.myapplication;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,11 +22,14 @@ public class PairedListAdapter extends BaseAdapter {
     private Set<BluetoothDevice> pairedDevices;
     private LayoutInflater inflater;
     private BluetoothAdapter myBluetooth;
+    public static String EXTRA_ADDRESS = "device_address";
 
     public PairedListAdapter(Context context, ArrayList<BluetoothDevice> devices){
+        myBluetooth = BluetoothAdapter.getDefaultAdapter();
         this.context = context;
         this.inflater = LayoutInflater.from(context);
-        this.pairedDevices = pairedDevices;
+        this.pairedDevices = myBluetooth.getBondedDevices();
+
     }
 
     @Override
@@ -34,12 +39,13 @@ public class PairedListAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        Iterator<BluetoothDevice> it = pairedDevices.iterator();
-        while(it.hasNext()){
+       return new ArrayList<BluetoothDevice>(pairedDevices).get(position);
+        /*Iterator<BluetoothDevice> it = pairedDevices.iterator();
+       // while(it.hasNext()){
             BluetoothDevice d = it.next();
-            return d;
-        }
-        return null;
+            return d;*/
+        //}
+
     }
 
     @Override
@@ -50,19 +56,29 @@ public class PairedListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.adapter_paired,null);
-        myBluetooth = BluetoothAdapter.getDefaultAdapter();
-        pairedDevices = myBluetooth.getBondedDevices();
 
-        Iterator<BluetoothDevice> it = pairedDevices.iterator();
-        while(it.hasNext()){
-            BluetoothDevice d = it.next();
+
+       /* Iterator<BluetoothDevice> it = pairedDevices.iterator();
+        //while(it.hasNext()){
+            BluetoothDevice d = it.next();*/
+       BluetoothDevice d = new ArrayList<BluetoothDevice>(pairedDevices).get(position);
             String devicename = d.getName();
             TextView name = convertView.findViewById(R.id.paired_name);
             name.setText(devicename);
-            String deviceadress = d.getAddress();
+            String deviceaddress = d.getAddress();
             TextView address = convertView.findViewById(R.id.paired_address);
-            address.setText(deviceadress);
-        }
+            address.setText(deviceaddress);
+       // }
+        convertView.setOnClickListener(v -> {
+            String info = deviceaddress;
+            String _address = info.substring(info.length()-17);
+
+            Intent intent = new Intent(this.context, Test.class);
+            intent.putExtra(EXTRA_ADDRESS,_address);
+            Toast.makeText(this.context, _address, Toast.LENGTH_LONG).show();
+            this.context.startActivity(intent);
+
+                });
 
         /*convertView.setOnClickListener(v -> {
             BluetoothActivity.mBluetoothAdapter.cancelDiscovery();

@@ -52,7 +52,9 @@ public class BluetoothActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mBroadcastReceiver);
+        if(mBroadcastReceiver.isOrderedBroadcast()) {
+            unregisterReceiver(mBroadcastReceiver);
+        }
     }
 
     @Override

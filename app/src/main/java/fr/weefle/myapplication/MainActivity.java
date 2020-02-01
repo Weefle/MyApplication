@@ -1,6 +1,7 @@
 package fr.weefle.myapplication;
 
 import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -20,6 +22,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final int MULTIPLE_PERMISSIONS = 0;
+    private BluetoothAdapter myBluetooth = null;
 
     String[] permissions= new String[]{
             Manifest.permission.RECEIVE_SMS,
@@ -36,18 +39,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        myBluetooth = BluetoothAdapter.getDefaultAdapter();
 
-        if (checkPermissions()){
-            //  permissions  granted.
 
-            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+            if (checkPermissions()) {
+
+                //  permissions  granted.
+
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+
+
+
     }
 
-
-
-    }
 
     private  boolean checkPermissions() {
         int result;

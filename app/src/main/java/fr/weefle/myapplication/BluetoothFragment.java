@@ -27,25 +27,10 @@ public class BluetoothFragment extends Fragment {
 
 
     private BluetoothAdapter myBluetooth = null;
-    private Set<BluetoothDevice> pairedDevices;
-    public static String EXTRA_ADDRESS = "device_address";
+    public static Set<BluetoothDevice> pairedDevices;
 
 
 
-
-    private AdapterView.OnItemClickListener myListClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            String info = ((TextView)view).getText().toString();
-            String address = info.substring(info.length()-17);
-
-            Intent intent = new Intent(getContext(), Test.class);
-            intent.putExtra(EXTRA_ADDRESS,address);
-            startActivity(intent);
-
-        }
-    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,7 +57,7 @@ public class BluetoothFragment extends Fragment {
         final ListView devicelist = (ListView) rootView.findViewById(R.id.listview1);
         final PairedListAdapter adapter = new PairedListAdapter(getContext(), list);
         devicelist.setAdapter(adapter);
-        devicelist.setOnItemClickListener(myListClickListener);
+        //devicelist.setOnItemClickListener(myListClickListener);
 
         return rootView;
     }
