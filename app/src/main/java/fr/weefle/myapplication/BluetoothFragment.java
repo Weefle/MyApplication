@@ -38,7 +38,7 @@ public class BluetoothFragment extends Fragment {
         // Inflate the layout for this fragment
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
         if(myBluetooth==null){
-            Toast.makeText(getContext(),"Bluetooth device not available!",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"Bluetooth device not available!",Toast.LENGTH_SHORT).show();
         }else if(!myBluetooth.isEnabled()){
             Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(intent, 1);
@@ -50,7 +50,7 @@ public class BluetoothFragment extends Fragment {
                 list.add(device.getName() + "\n" + device.getAddress());
             }
         }else{
-            Toast.makeText(getContext(),"No paired Bluetooth device found!",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"No paired Bluetooth device found!",Toast.LENGTH_SHORT).show();
 
         }
         final View rootView = inflater.inflate(R.layout.fragment_bluetooth, container, false);

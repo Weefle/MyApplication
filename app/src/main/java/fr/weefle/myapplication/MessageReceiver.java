@@ -51,7 +51,7 @@ public class MessageReceiver extends BroadcastReceiver {
                         strMessage += j;
                     }
                     // Display the SMS message.
-                    Toast.makeText(context, strMessage, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, strMessage, Toast.LENGTH_SHORT).show();
                 }
             }
         }

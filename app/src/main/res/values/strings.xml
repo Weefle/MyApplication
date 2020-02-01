@@ -16,4 +16,6 @@
     <string name="bluetooth_address">bluetooth_address</string>
     <string name="paired_name">paired_name</string>
     <string name="paired_address">paired_address</string>
+    <string name="deconnection">Déconnection</string>
+    <string name="deverouiller">Déverouiller</string>
 </resources>

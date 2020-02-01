@@ -4,7 +4,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Set;
 
 public class PairedListAdapter extends BaseAdapter {
@@ -73,9 +71,9 @@ public class PairedListAdapter extends BaseAdapter {
             String info = deviceaddress;
             String _address = info.substring(info.length()-17);
 
-            Intent intent = new Intent(this.context, Test.class);
+            Intent intent = new Intent(this.context, Control.class);
             intent.putExtra(EXTRA_ADDRESS,_address);
-            Toast.makeText(this.context, _address, Toast.LENGTH_LONG).show();
+            Toast.makeText(this.context, _address, Toast.LENGTH_SHORT).show();
             this.context.startActivity(intent);
 
                 });
