@@ -83,7 +83,9 @@ public class Control extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("TO".getBytes());
+                //btSocket.getOutputStream().write("TO".getBytes());
+                btSocket.getOutputStream().write(("UNLOCK: " + MessageReceiver.code).getBytes());
+                Toast.makeText(getApplicationContext(), "Code envoyé!", Toast.LENGTH_SHORT).show();
             }
             catch (IOException e)
             {
@@ -106,6 +108,7 @@ public class Control extends AppCompatActivity {
         protected void onPreExecute()
         {
             progress = ProgressDialog.show(Control.this, "Connecting...", "Please wait!!!");  //show a progress dialog
+            //Toast.makeText(getApplicationContext(), MessageReceiver.code, Toast.LENGTH_SHORT).show();
         }
 
         @Override

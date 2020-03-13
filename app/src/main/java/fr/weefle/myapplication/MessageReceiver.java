@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class MessageReceiver extends BroadcastReceiver {
 
+    public static String code = "";
+
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -25,6 +27,7 @@ public class MessageReceiver extends BroadcastReceiver {
             Bundle bundle = intent.getExtras();
             SmsMessage[] msgs;
             String strMessage = "";
+            code = "";
             String format = bundle.getString("format");
             // Retrieve the SMS message received.
             Object[] pdus = (Object[]) bundle.get("pdus");
@@ -49,6 +52,7 @@ public class MessageReceiver extends BroadcastReceiver {
                     strMessage += " =>";
                     for(int j : getIntegers(msgs[i].getMessageBody()) ) {
                         strMessage += j;
+                        code+= j;
                     }
                     // Display the SMS message.
                     Toast.makeText(context, strMessage, Toast.LENGTH_SHORT).show();
